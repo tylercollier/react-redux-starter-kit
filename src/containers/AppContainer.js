@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Router } from 'react-router'
 import { Provider } from 'react-redux'
+import DevTools from './DevTools'
 
 class AppContainer extends React.Component {
   static propTypes = {
@@ -17,6 +18,7 @@ class AppContainer extends React.Component {
       <Provider store={store}>
         <div style={{ height: '100%' }}>
           <Router history={history} children={routes} key={routerKey} />
+          <DevTools />
         </div>
       </Provider>
     )

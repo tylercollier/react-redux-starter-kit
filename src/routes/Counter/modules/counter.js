@@ -41,7 +41,7 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]: (state, action) => state + action.payload
+  [COUNTER_INCREMENT]: (state, action) => state + action.payload * 7
 }
 
 // ------------------------------------

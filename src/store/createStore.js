@@ -2,6 +2,11 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { routerMiddleware } from 'react-router-redux'
 import thunk from 'redux-thunk'
 import makeRootReducer from './reducers'
+import { createDevTools } from 'redux-devtools'
+import React from 'react'
+import LogMonitor from 'redux-devtools-log-monitor'
+import DockMonitor from 'redux-devtools-dock-monitor'
+import DevTools from '../containers/DevTools'
 
 export default (initialState = {}, history) => {
   // ======================================================
@@ -17,6 +22,8 @@ export default (initialState = {}, history) => {
     const devToolsExtension = window.devToolsExtension
     if (typeof devToolsExtension === 'function') {
       enhancers.push(devToolsExtension())
+    } else {
+      enhancers.push(DevTools.instrument())
     }
   }
 
