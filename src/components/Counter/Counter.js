@@ -17,13 +17,18 @@ export const Counter = (props) => (
     <button className='btn btn-default' onClick={props.doubleAsync}>
       Double (Async)
     </button>
+    <div>
+      <label>Type some stuff</label> <input value={props.text} onChange={(event) => props.onTextChange(event.target.value)} />
+    </div>
   </div>
 )
 
 Counter.propTypes = {
   counter: React.PropTypes.number.isRequired,
   doubleAsync: React.PropTypes.func.isRequired,
-  increment: React.PropTypes.func.isRequired
+  increment: React.PropTypes.func.isRequired,
+  text: React.PropTypes.string,
+  onTextChange: React.PropTypes.func
 }
 
 export default Counter

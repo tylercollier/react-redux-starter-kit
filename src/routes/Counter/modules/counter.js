@@ -2,6 +2,7 @@
 // Constants
 // ------------------------------------
 export const COUNTER_INCREMENT = 'COUNTER_INCREMENT'
+export const TEXT_CHANGE = 'TEXT_CHANGE'
 
 // ------------------------------------
 // Actions
@@ -32,22 +33,36 @@ export const doubleAsync = () => {
   }
 }
 
+export const onTextChange = (value) => {
+  return {
+    type: TEXT_CHANGE,
+    payload: value
+  }
+}
+
 export const actions = {
   increment,
-  doubleAsync
+  doubleAsync,
+  onTextChange
 }
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-  [COUNTER_INCREMENT]: (state, action) => state + action.payload * 7
+  [COUNTER_INCREMENT]: (state, action) => {
+    return { counter: state.counter + action.payload, text: state.text }
+  },
+  [TEXT_CHANGE]: (state, action) => {
+    console.log(state);
+    return { counter: state.counter, text: action.payload }
+  }
 }
 
 // ------------------------------------
 // Reducer
 // ------------------------------------
-const initialState = 0
+const initialState = { counter: 0, text: ''}
 export default function counterReducer (state = initialState, action) {
   const handler = ACTION_HANDLERS[action.type]
 
